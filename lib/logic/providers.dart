@@ -1,3 +1,4 @@
+import 'package:andrew_wommack/logic/audio_downloader.dart';
 import 'package:andrew_wommack/logic/audio_favourites.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'feed_controller.dart';
@@ -13,3 +14,5 @@ final feedControllerProvider = StateNotifierProvider<FeedController,FeedState>((
 final themeStateProvider = ChangeNotifierProvider<MainTheme>((ref)=>MainTheme());
 
 final favouriteAudioProvider = ChangeNotifierProvider<AudioFavourites>((ref)=>AudioFavourites());
+
+final audioDownloaderProvider = ChangeNotifierProvider<AudioDownloader>((ref)=>AudioDownloader());

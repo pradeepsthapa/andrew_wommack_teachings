@@ -9,6 +9,7 @@ class MiniPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final isDark = Theme.of(context).brightness==Brightness.dark;
     return StreamBuilder<bool>(
       stream: AudioService.runningStream,
       builder: (context, snapshot) {
@@ -55,7 +56,7 @@ class MiniPlayer extends StatelessWidget {
                             children: [
                             if (mediaItem?.title != null)
                               Text(mediaItem!.title,maxLines: 1,overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700),),
+                              style: TextStyle(color: isDark?Theme.of(context).accentColor:Colors.white,fontWeight: FontWeight.w700),),
                             if(mediaItem?.album !=null) Text(mediaItem!.album,maxLines: 1,overflow: TextOverflow.ellipsis,
                               style: TextStyle(color: Colors.white70,),
                             ),
@@ -63,7 +64,7 @@ class MiniPlayer extends StatelessWidget {
                         ),
                         if (queue.isNotEmpty)
                           Flexible(flex: 4,
-                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            child: Row(mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 IconButton(
                                     onPressed: mediaItem == queue.first ? null : AudioService.skipToPrevious,
@@ -80,11 +81,11 @@ class MiniPlayer extends StatelessWidget {
                                             iconSize: 40,
                                             onPressed: playing?AudioService.pause:AudioService.play,
                                             icon: CircleAvatar(
-                                              backgroundColor: Colors.black45,
+                                              backgroundColor: isDark?Colors.white:Colors.black45,
                                               minRadius: 40,
                                               child:processingState==AudioProcessingState.buffering?
-                                              CircularProgressIndicator(valueColor:AlwaysStoppedAnimation<Color>(Colors.white))
-                                                  :Icon(playing?Icons.pause:Icons.play_arrow,color: Colors.white,),
+                                              CircularProgressIndicator(valueColor:AlwaysStoppedAnimation<Color>(isDark?Colors.black:Colors.white))
+                                                  :Icon(playing?Icons.pause:Icons.play_arrow,color: isDark?Colors.black:Colors.white,),
                                             ),
                                           );
                                         }

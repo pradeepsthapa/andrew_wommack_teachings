@@ -5,8 +5,9 @@ class TeachingModel extends Equatable{
   final int? id;
   final String? tTitle;
   final String? tUrl;
+  final String? image;
   final String? description;
-  TeachingModel({@required this.id, @required this.tTitle, @required this.tUrl, @required this.description});
+  TeachingModel({@required this.id, @required this.tTitle, @required this.tUrl,@required this.image, @required this.description});
 
   @override
   List<Object?> get props => [id,tTitle,tUrl,description];
@@ -17,6 +18,7 @@ class TeachingModel extends Equatable{
       tTitle: map['tTitle'] as String?,
       tUrl: map['tUrl'] as String?,
       description: map['description'] as String?,
+      image: map['image'] as String?,
     );
   }
 
@@ -26,6 +28,7 @@ class TeachingModel extends Equatable{
       'id': this.id,
       'tTitle': this.tTitle,
       'tUrl': this.tUrl,
+      'image': this.image,
       'description': this.description,
     } as Map<String, dynamic>;
   }

@@ -13,8 +13,8 @@ class MainTheme extends ChangeNotifier{
   int _colorIndex = 0;
   Brightness get platformBrightness => SchedulerBinding.instance!.window.platformBrightness;
 
-  List<dynamic> _swatchColors = [Colors.teal,Colors.red, Colors.blue,Colors.pink];
-  List<Color> get swatchColors => [Colors.teal,Colors.red, Colors.blue,Colors.pink];
+  List<dynamic> _swatchColors = [Colors.blue,Colors.pink,Colors.teal,Colors.red, Colors.amber];
+  List<Color> get swatchColors => [Colors.blue,Colors.pink,Colors.teal,Colors.red,Colors.amber];
 
 
   void loadInitial(){

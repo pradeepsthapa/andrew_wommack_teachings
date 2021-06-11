@@ -3,6 +3,7 @@ import 'package:andrew_wommack/audio/queue_state.dart';
 import 'package:andrew_wommack/data/model.dart';
 import 'package:andrew_wommack/logic/providers.dart';
 import 'package:audio_service/audio_service.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webfeed/domain/rss_feed.dart';
@@ -22,18 +23,17 @@ class FeedLoadedScreen extends StatelessWidget {
       children: [
         Container(
           height: 220,color: Colors.black12,
-          child: FadeInImage(
-            placeholder: AssetImage('assets/images/andrew_wommack.png'),
-            image: NetworkImage(rssFeed?.image?.url??'https://cachedimages.podchaser.com/512x512/aHR0cHM6Ly9kM3Qzb3pmdG1kbWgzaS5jbG91ZGZyb250Lm5ldC9wcm9kdWN0aW9uL3BvZGNhc3RfdXBsb2FkZWRfbm9sb2dvLzExODE5Njc5LzExODE5Njc5LTE2MTAxMTcxNjY1MzAtM2NlZDU4ZWIxZjFiMi5qcGc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D',),
-            height: 220,width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
+          child: CachedNetworkImage(fit: BoxFit.cover,height: 220,
+            placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
+            imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+            errorWidget: (context, url, error) => Image.network('https://www.podchaser.com/images/missing-image.png'),
           ),
 
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(rssFeed?.title ?? teachingModel!.tTitle!,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,color: isDark?Theme.of(context).accentColor:Colors.black),),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 7),
@@ -49,11 +49,11 @@ class FeedLoadedScreen extends StatelessWidget {
                 onPressed: () async{
                   if(AudioService.running) {
                     await AudioService.stop().then((value) {
-                      startAudioPlayer(feed: rssFeed);
+                      startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
                     });
                   }
                   else {
-                    startAudioPlayer(feed: rssFeed);
+                    startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
                   }
                 },
                 color: Theme
@@ -75,7 +75,10 @@ class FeedLoadedScreen extends StatelessWidget {
               Consumer(builder: (context, watch, child) {
                 final state = watch(favouriteAudioProvider);
                 return MaterialButton(
-                  onPressed: () => context.read(favouriteAudioProvider).toggleFavourite(teachingModel!.tUrl!),
+                  onPressed: () {
+                    context.read(favouriteAudioProvider).toggleFavourite(teachingModel!.tUrl!);
+                    // print(rssFeed?.image?.url??'no link');
+                  },
                   child: Row(mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Icon(
@@ -118,7 +121,6 @@ class FeedLoadedScreen extends StatelessWidget {
                       final queue = queueState?.queue ?? [];
                       final mediaItem = queueState?.mediaItem;
                       return ListTile(
-                        focusColor: Colors.red,
                         selected: item?.enclosure?.url==mediaItem?.id? true : false,
                         leading: SizedBox(width: 50, height: 50,
                           child: Card(
@@ -127,28 +129,25 @@ class FeedLoadedScreen extends StatelessWidget {
                             shadowColor: Colors.black45,
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(5),
-                                child: FadeInImage(placeholder: AssetImage(
-                                    'assets/images/andrew_wommack.png'),
-                                  image: NetworkImage(rssFeed?.image?.url ??
-                                      'https://assets-global.website-files.com/59ee0c0f13651700017e6ed2/5dd6c25b8a6cfb31eb7799fd_ccob.jpeg'),
-                                  fit: BoxFit.cover,)),
+                                child: CachedNetworkImage(fit: BoxFit.cover,
+                                  placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
+                                  imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+                                  errorWidget: (context, url, error) => Image.network('https://www.podchaser.com/images/missing-image.png'),
+                                )),
                           ),
                         ),
                         title: Text(item?.title ?? '', style: TextStyle(
-                            fontWeight: FontWeight.w500),),
+                            fontWeight: item?.enclosure?.url==mediaItem?.id?FontWeight.bold:FontWeight.w500),),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(item?.description?.replaceAll(
                                 RegExp(r"<[^>]*>"), '') ?? '', maxLines: 3,
                               overflow: TextOverflow.ellipsis,),
-                            Align(alignment: Alignment.topRight,
-                              child: Text(DateTime.parse(
-                                  item?.pubDate?.toString() ??
-                                      DateTime.now().toString())
-                                  .toString()
-                                  .substring(0, 10),
-                                style: TextStyle(fontSize: 10),),)
+                            // Align(alignment: Alignment.topRight,
+                            //   child: Text(DateTime.parse(item?.pubDate?.toString() ??
+                            //           DateTime.now().toString()).toString().substring(0, 10),
+                            //     style: TextStyle(fontSize: 10),),)
                           ],
                         ),
                         onTap: () async{
@@ -159,11 +158,11 @@ class FeedLoadedScreen extends StatelessWidget {
                           else {
                             if(AudioService.running) {
                               await AudioService.stop().then((value) {
-                                startAudioPlayer(feed: rssFeed);
+                                startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
                               });
                             }
                             else {
-                              startAudioPlayer(feed: rssFeed);
+                              startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
                             }
                           }
                         },
@@ -177,17 +176,17 @@ class FeedLoadedScreen extends StatelessWidget {
     );
   }
 
-  void startAudioPlayer({@required RssFeed? feed}) {
+  void startAudioPlayer({@required RssFeed? feed, @required TeachingModel? teachingModel}) {
     final List<Map<String, dynamic>> lists = [];
     for (int i = 0; i < feed!.items!.length; i++) {
       RssItem item = feed.items![i];
       MediaItem media = MediaItem(
           id: item.enclosure?.url ?? '',
-          album: feed.title ?? 'Andrew Wommack',
-          title: item.title ?? 'Andrew Wommack',
+          album: feed.title ?? teachingModel!.tTitle!,
+          title: item.title ?? teachingModel!.tTitle!,
           artist: feed.author ?? 'Andrew Wommack',
           // duration: Duration(milliseconds: item.enclosure?.length ?? 0,),
-          artUri: Uri.parse(feed.image?.url ?? 'https://assets-global.website-files.com/59ee0c0f13651700017e6ed2/5dd6c25b8a6cfb31eb7799fd_ccob.jpeg')
+          artUri: Uri.parse(feed.image?.url ?? teachingModel?.image??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg')
       );
       lists.add(media.toJson());
     }

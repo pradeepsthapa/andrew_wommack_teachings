@@ -1,4 +1,5 @@
 import 'package:andrew_wommack/logic/providers.dart';
+import 'package:andrew_wommack/presentation/screens/favourites_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,7 +49,18 @@ class MainDrawer extends StatelessWidget {
             title: Text("Favourites"),
             onTap: (){
               Scaffold.of(context).openEndDrawer();
-              // Navigator.push(context, CupertinoPageRoute(builder: (_)=>FavouritesScreen()));
+              Navigator.push(context, PageRouteBuilder(
+                  transitionDuration: Duration(milliseconds: 300),
+                  transitionsBuilder: (context,a1,a2,child){
+                    return ScaleTransition(
+                        alignment: Alignment.bottomCenter,
+                        scale: a1,
+                      child: child,
+                    );
+                  },
+                  pageBuilder: (context,  a1, a2) {
+                return FavouritesScreen();
+              }));
             },
           ),
 
@@ -98,18 +110,21 @@ class MainDrawer extends StatelessWidget {
         barrierDismissible: true,
         barrierLabel: '',
         barrierColor: Colors.black45,
-        transitionDuration: Duration(milliseconds: 300),
+        transitionDuration: Duration(milliseconds: 240),
         pageBuilder: (context,a1,a2){
           return AlertDialog(
             content: Column(mainAxisSize: MainAxisSize.min,crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("This app containers audio teachings from Andrew Wommack. For more information or feedback please contact me below."),
+                Text("This application contain collection of Andrew Wommack's teachings. For more information or feedback please contact me below."),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
                   child: Text('pradeepsthapa@gmail.com',style: TextStyle(color: Colors.grey[500],fontSize: 15),),
                 ),
               ],
             ),
+            actions: [
+              TextButton(onPressed: ()=>Navigator.pop(context), child: Text("Close")),
+            ],
           );
         });
   }
