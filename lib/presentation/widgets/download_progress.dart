@@ -17,14 +17,14 @@ class DownloadProgressWidget extends ConsumerWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 7),
-                child: Text("Downloading...${downloadState.progress}"+"%",style: TextStyle(color: Colors.white,fontSize: 12),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                child: Text("Downloading...${downloadState.progress}"+"%",style: TextStyle(fontSize: 12),maxLines: 1,overflow: TextOverflow.ellipsis,),
               ),
               Padding(
                 padding: const EdgeInsets.all(7.0),
                 child: SliderTheme(
                   data: SliderThemeData(
-                    activeTrackColor: Colors.greenAccent,
-                    inactiveTrackColor: Colors.transparent,
+                    activeTrackColor: Colors.green,
+                    inactiveTrackColor: Colors.greenAccent.withOpacity(0.5),
                     trackHeight: 3,
                     thumbColor: Colors.greenAccent,
                     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 1.0),
@@ -41,7 +41,7 @@ class DownloadProgressWidget extends ConsumerWidget {
             ],
           ),
         ),
-        IconButton(onPressed: ()=>context.read(audioDownloaderProvider).cancelDownload(downloadState.id), icon: Icon(Icons.close,color: Colors.white,size: 18,)),
+        IconButton(onPressed: ()=>context.read(audioDownloaderProvider).cancelDownload(downloadState.id), icon: Icon(Icons.close,size: 18,color: Colors.red,)),
       ],
     );
     if(downloadState.downloadTaskStatus==DownloadTaskStatus.complete){

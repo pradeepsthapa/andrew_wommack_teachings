@@ -78,7 +78,7 @@ Imagine what it would have been like to be one of Jesus’ disciples at the end.
       id: 10,
       tTitle: '''Don't Limit God''',
       tUrl: 'http://feeds.feedburner.com/awm_1086',
-      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1044.jpg',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
       description: '''
       God has more for you than what you are experiencing, but like most Christians, you’ve limited Him in one way or another. Fear of success, fear of failure, and vain imaginations are just some of the ways you can limit God. You need to change the image you have of yourself if you’re going to experience the abundant life He has for you. In this series, Andrew Wommack helps you do just that so you can stop limiting what God wants to do in your life and accomplish the plans that He has for you!
       ''',
@@ -105,7 +105,7 @@ Imagine what it would have been like to be one of Jesus’ disciples at the end.
       id: 12,
       tTitle: 'Effortless Change',
       tUrl: 'http://feeds.feedburner.com/awm_1018',
-      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1044.jpg',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1018.jpg',
       description: '''
       Someone once said that the only thing constant is change. We are all changing, especially those of us who have tasted the grace and power of God. We are no longer content with being normal. We want to change. We need to change. But how? There is a secret to change that can make it nearly effortless. Does this sound too good to be true? In this series, Andrew shares some secrets that Jesus taught that produce change automatically. This kind of change is a by-product of seeking God. Andrew reveals how the power of God's Word affects this change.
       ''',
@@ -487,6 +487,253 @@ It wasn’t just fate or luck that Peter walked on the water while the other apo
       These three questions are the most important questions you will ever ask yourself. Most people have probably never written them down, but I guarantee you that every single person has pondered these in their heart and mind at some point in their life. The answers to these questions will absolutely determine what your life will become. So, it’s important to answer them correctly.
       ''',
     ),
+    TeachingModel(
+      id: 55,
+      tTitle: '''Living In The Balance Of Grace And Faith''',
+      tUrl: 'http://s3.awmi.net/podcasts/images/teaching/awm_1064.jpg',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      Grace and faith are often seen as opposing forces. The truth is that grace and faith are both essential ingredients in our walk with the Lord. However, emphasize either to the exclusion of the other and the imbalance will make it difficult to receive from God. This lack of understanding has led to much confusion, frustration, and disappointment in the Body of Christ
+      ''',
+    ),
+    TeachingModel(
+      id: 56,
+      tTitle: '''Love Series''',
+      tUrl: 'http://feeds.feedburner.com/awm_love',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      Many Christians think they know what God's kind of love is, but they don't. This series will make a clear distinction between human love and God's kind of love. More importantly, it will reveal that we now have God's kind of love in us, and it will teach you how to walk in it. As 1 Corinthians 13:8 says, "Love never fails."
+      ''',
+    ),
+
+    TeachingModel(
+      id: 57,
+      tTitle: '''The New You & The Holy Spirit''',
+      tUrl: 'http://feeds.feedburner.com/awm_1078',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      In this series, Andrew addresses the two most important events that will ever take place in a person’s life—first, receiving salvation through faith in Jesus Christ, and second, being filled with the power of the Holy Spirit.
+      ''',
+    ),
+
+    TeachingModel(
+      id: 58,
+      tTitle: '''Observing All Things''',
+      tUrl: 'http://feeds.feedburner.com/awm_1083',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      There’s more to being a disciple than simply faith in Jesus. That might sound hard to believe, but that’s exactly what Jesus Himself said:
+
+Go therefore and make disciples of all the nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, [20a] teaching them to observe all things that I have commanded you.
+Matthew 28:19-20a, New King James Version
+
+You must be taught to observe all things Jesus commanded if you’re going to be His disciple. For many Christians, this is totally overlooked. It’s the reason they are divided on major issues of today. In this series, Andrew exposes three of these issues—homosexuality, abortion, and evolution—and reveals what God’s Word has to say so you can begin to observe all things Jesus commanded and truly be His disciple.
+      ''',
+    ),
+
+    TeachingModel(
+      id: 59,
+      tTitle: '''Paul's Letter To The Ephesians Series''',
+      tUrl: 'http://feeds.feedburner.com/awm_ephesians',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      Paul's Letter To The Ephesians Series
+      ''',
+    ),
+    TeachingModel(
+      id: 60,
+      tTitle: '''Paul's Letter To The Galatians''',
+      tUrl: 'http://feeds.feedburner.com/awm_1016',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1016.jpg',
+      description: '''
+      Paul's Letter To The Galatians
+      ''',
+    ),
+    TeachingModel(
+      id: 61,
+      tTitle: '''Paul's Secrets To Happiness''',
+      tUrl: 'http://feeds.feedburner.com/awm_1084',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      Many Christians strive to achieve happiness. Few, however, have understood, much less followed, what the Bible says to get there. Needless to say, they aren’t “happy” with the end result. Listen as Andrew shares twenty secrets from Paul’s letter to the Philippians that are sure to get you on the path to happiness.
+      ''',
+    ),
+    TeachingModel(
+      id: 62,
+      tTitle: '''The Positive Ministry Of The Holy Spirit''',
+      tUrl: 'http://feeds.feedburner.com/awm_1020',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1020.jpg',
+      description: '''
+      On the night before His crucifixion, Jesus spoke to His disciples and told them that He would send them the Holy Spirit: the Comforter. The ministry of the Holy Spirit is a comforting ministry, not a ministry of condemnation. Discern the difference between your conscience and the Holy Spirit. Another function of the Holy Spirit is to convince believers of their right standing in Jesus Christ and their authority over the devil. Once you receive this positive ministry, you will praise God for your imputed righteousness and the devil's defeat.
+      ''',
+    ),
+    TeachingModel(
+      id: 63,
+      tTitle: '''The Power Of Faith Filled Words''',
+      tUrl: 'http://feeds.feedburner.com/awm_1075',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1075.jpg',
+      description: '''
+      God created the world with faith filled words. He demonstrated that words have the power to create and that creation responds to words. If you can understand that, it will change your life.
+      ''',
+    ),
+    TeachingModel(
+      id: 64,
+      tTitle: '''The Power Of Hope''',
+      tUrl: 'http://feeds.feedburner.com/awm_1080',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1080.jpg',
+      description: '''
+      The anticipation, or the constant expectation, of good is how most people define hope. But the Bible says in Romans 8:24 that hope is for that which is not seen. How can you see something that isn’t there? The answer may surprise you.
+      ''',
+    ),
+    TeachingModel(
+      id: 65,
+      tTitle: '''The Power Of Partnership''',
+      tUrl: 'http://feeds.feedburner.com/awm_1043',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1043.jpg',
+      description: '''
+      There are spiritual dynamics involved in partnering with the Gospel that most people don't realize. Learn how true partnership will change your life once you understand its biblical purpose and God's heart toward it.
+      ''',
+    ),
+    TeachingModel(
+      id: 66,
+      tTitle: '''The Power Of The Cross''',
+      tUrl: 'http://feeds.feedburner.com/awm_1073',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1073.jpg',
+      description: '''
+      What Jesus accomplished on the cross is far more than the avoidance of hell. This teaching will change the way you see the cross and will help you more fully understand what Jesus did on the cross.
+      ''',
+    ),
+    TeachingModel(
+      id: 67,
+      tTitle: '''Prayer Series''',
+      tUrl: 'http://feeds.feedburner.com/awm_prayer',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      A successful prayer life is something many Christians struggle with. It may surprise you to find that one of the big reasons is because of all the wrong teaching they’ve received about it. Learn the primary purpose of prayer. In this powerful series, Andrew counters many modern religious concepts about prayer and establishes a foundation upon which a rewarding and effective prayer life can be built upon.
+      ''',
+    ),
+    TeachingModel(
+      id: 68,
+      tTitle: '''Redemption''',
+      tUrl: 'http://feeds.feedburner.com/awm_1056',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1056.jpg',
+      description: '''
+      It’s more than theology; it’s practical. Your understanding will determine what you are able to receive from God, not just in eternity, but here and now.
+      ''',
+    ),
+    TeachingModel(
+      id: 69,
+      tTitle: '''The Resurrection''',
+      tUrl: 'http://feeds.feedburner.com/awm_single',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      The Resurrection
+      ''',
+    ),
+    TeachingModel(
+      id: 70,
+      tTitle: '''Righteousness Series''',
+      tUrl: 'http://feeds.feedburner.com/awm_righteousness',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      One of our biggest problems in the body of Christ is a lack of understanding of our righteous position in Christ. The effectiveness of our faith is directly proportional to our acknowledgment of the good things that are in us through Christ Jesus (Philem. 1:6). If we don't know what those good things are, our faith won't work. These teachings are a must for every believer.
+      ''',
+    ),
+    TeachingModel(
+      id: 71,
+      tTitle: '''Spirit, Soul & Body''',
+      tUrl: 'http://feeds.feedburner.com/awm_1027',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      This teaching is a foundational truth that is essential for understanding how much God loves you and believing what He says about you in His Word. Each person is made up of three different parts: spirit, soul, and body. Learn how these three parts relate to God and to each other. At salvation your spirit is totally changed, but your soul and body is not yet redeemed. This series will teach you how to release the life that is already in your spirit, into your physical body and emotions.
+      ''',
+    ),
+    TeachingModel(
+      id: 72,
+      tTitle: '''Spiritual Authority''',
+      tUrl: 'http://feeds.feedburner.com/awm_1017',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1017.jpg',
+      description: '''
+      Understanding spiritual authority is vital. Many of us are confused and defeated because of a lack of understanding in this area. We passively wait on God to do what He has already told us to do. Or unknowingly, we take upon ourselves the responsibility of doing things that belong to God alone. This leads us to blame God for things that aren't His fault, which pleases Satan. If he can make us think that everything is controlled by God, we'll become passive and allow Satan free access to sow destruction in our lives. This series takes the cover off Satan's deception and shows us the power that God has committed to us. Watch your faith soar and your situations improve as you receive the truths of your spiritual authority in Christ.
+      ''',
+    ),
+    TeachingModel(
+      id: 73,
+      tTitle: '''Sure Foundation''',
+      tUrl: 'http://feeds.feedburner.com/awm_1034',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1034.jpg',
+      description: '''
+      This series is a summary of the first four teachings Andrew gives in the U.S. Charis Bible College. They were taken directly from his Gospel Truth television broadcasts. God's Word has to be the foundation of everything a Christian believes. Most problems that Christians have come from an ignorance of God's Word or wrong teachings from His Word.
+      ''',
+    ),
+    TeachingModel(
+      id: 74,
+      tTitle: '''Testimonies Series''',
+      tUrl: 'http://feeds.feedburner.com/awm_testimonies',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      This is a series of personal testimonies including Andrew Wommack’s, the history of Andrew Wommack Ministries, Niki Ochenski’s, and more. You’ll be blessed by these life-changing stories.
+      ''',
+    ),
+    TeachingModel(
+      id: 75,
+      tTitle: '''The True Nature Of God''',
+      tUrl: 'http://feeds.feedburner.com/awm_1002',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1002.jpg',
+      description: '''
+      Often, human perspective and the mechanics of Christianity eclipse the true nature of God - the God who wants nothing more than to share an intimate friendship with His children. If you’re wondering who God is, or if He cares, let Andrew show you The True Nature of God.
+      ''',
+    ),
+    TeachingModel(
+      id: 76,
+      tTitle: '''The War Is Over''',
+      tUrl: 'http://feeds.feedburner.com/awm_1053',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1053.jpg',
+      description: '''
+      There have been many wars throughout history, and more are yet to come. However, the most important one is over, and most Christians don’t even know it. Which war could that be? Listen as Andrew explains; it will change the way you relate to God forever.
+      ''',
+    ),
+    TeachingModel(
+      id: 77,
+      tTitle: '''Whose Righteousness?''',
+      tUrl: 'http://feeds.feedburner.com/awm_1022',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1022.jpg',
+      description: '''
+      What is the true meaning of righteousness? You will discover that this biblical term refers to your relationship with the Father. Learn how to apply it to your daily life. This series will also show you how to become righteous, how to receive righteousness, and how to walk in it daily. You will discover that righteousness is not an external thing; it is something you receive in your spirit at the new birth. These truths will eliminate condemnation and cause you to revel in the precious gift of righteousness.
+      ''',
+    ),
+    TeachingModel(
+      id: 78,
+      tTitle: '''The Word Became Flesh''',
+      tUrl: 'http://feeds.feedburner.com/awm_1057',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1057.jpg',
+      description: '''
+      Through His spoken Word, God created the earth and everything in it, put the heaven into place, and formed man. Most importantly, His Word became flesh, and Jesus (God in the flesh) was born. His Word is the most powerful thing on earth and in heaven. It is the absolute and infallible truth. His Word never changes, and He never breaks His Word.
+
+In this five-part series, Andrew addresses the impact this has in our lives. He explains how God Himself is limited by His own words; the difference between God’s responsibility and ours; the role the devil plays, if any; the power God has given to us; how to conceive a miracle; and more. These messages, recorded live at a recent Gospel Truth Seminar, will change your life.
+
+The first two teachings lay the foundation for the third (The Word became Flesh), which is the heart of the message. The last two teachings bring further understanding.
+      ''',
+    ),
+    TeachingModel(
+      id: 79,
+      tTitle: '''Word Series''',
+      tUrl: 'http://feeds.feedburner.com/awm_word',
+      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+      description: '''
+      It is so vital that we as Christians know God’s Word and know what to do with it. It is like a seed that goes into our hearts and produces a harvest. This series is on a number of different topics where Andrew shares how to study the Bible, how to see effortless change in your life, how that the Word is the only sure foundation to base our lives upon, and more.
+      ''',
+    ),
+    TeachingModel(
+      id: 80,
+      tTitle: '''You've Already Got It''',
+      tUrl: 'http://feeds.feedburner.com/awm_1033',
+      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1033.jpg',
+      description: '''
+      Most Christians believe God CAN do anything, but they don't believe that He HAS done very much. They live their whole Christian lives seeking, trying to get the Lord to heal, deliver, bless, and prosper them; but He's already done it. The true key to the Christian life is to quit asking and start believing and commanding. This series will challenge your beliefs, and if accepted, it will change your life.
+      ''',
+    ),
+
 
   ];
 }

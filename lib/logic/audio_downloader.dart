@@ -2,7 +2,6 @@ import 'dart:isolate';
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:get_storage/get_storage.dart' as path;
 import 'package:permission_handler/permission_handler.dart';
 
 class AudioDownloader extends ChangeNotifier{
@@ -46,7 +45,6 @@ class AudioDownloader extends ChangeNotifier{
   }
 
   void startDownload(String url, String filename)async{
-      // final storageLocation = await path.getExternalStorageDirectories(type: path.StorageDirectory.music);
 
       if(!initialized){
         await initializeIsolate();

@@ -54,7 +54,7 @@ class FeedController extends StateNotifier<FeedState>{
         state = FeedLoaded(feed);
       }
     }
-    on Failure catch(e){
+    on Failure {
       state = FeedError("Unable to fetch data. Are you connected to the internet ?");
     }
   }

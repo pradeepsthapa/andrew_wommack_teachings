@@ -22,11 +22,11 @@ class FeedLoadedScreen extends StatelessWidget {
     return ListView(
       children: [
         Container(
-          height: 220,color: Colors.black12,
-          child: CachedNetworkImage(fit: BoxFit.cover,height: 220,
+          height: 220,color: Colors.black12,width: double.infinity,
+          child: CachedNetworkImage(fit: BoxFit.cover,height: 220,width: double.infinity,
             placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
             imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-            errorWidget: (context, url, error) => Image.network('https://www.podchaser.com/images/missing-image.png'),
+            errorWidget: (context, url, error) => Image.network('https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg'),
           ),
 
         ),
@@ -93,7 +93,7 @@ class FeedLoadedScreen extends StatelessWidget {
                   highlightColor: Colors.redAccent,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  elevation: 0,
+                  elevation: 1,
                   minWidth: 150,
                 );
               },),
@@ -132,7 +132,7 @@ class FeedLoadedScreen extends StatelessWidget {
                                 child: CachedNetworkImage(fit: BoxFit.cover,
                                   placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
                                   imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-                                  errorWidget: (context, url, error) => Image.network('https://www.podchaser.com/images/missing-image.png'),
+                                  errorWidget: (context, url, error) => Image.network('https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg'),
                                 )),
                           ),
                         ),
@@ -144,10 +144,6 @@ class FeedLoadedScreen extends StatelessWidget {
                             Text(item?.description?.replaceAll(
                                 RegExp(r"<[^>]*>"), '') ?? '', maxLines: 3,
                               overflow: TextOverflow.ellipsis,),
-                            // Align(alignment: Alignment.topRight,
-                            //   child: Text(DateTime.parse(item?.pubDate?.toString() ??
-                            //           DateTime.now().toString()).toString().substring(0, 10),
-                            //     style: TextStyle(fontSize: 10),),)
                           ],
                         ),
                         onTap: () async{
@@ -185,7 +181,6 @@ class FeedLoadedScreen extends StatelessWidget {
           album: feed.title ?? teachingModel!.tTitle!,
           title: item.title ?? teachingModel!.tTitle!,
           artist: feed.author ?? 'Andrew Wommack',
-          // duration: Duration(milliseconds: item.enclosure?.length ?? 0,),
           artUri: Uri.parse(feed.image?.url ?? teachingModel?.image??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg')
       );
       lists.add(media.toJson());

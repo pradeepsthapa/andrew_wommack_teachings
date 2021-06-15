@@ -105,13 +105,13 @@ class LoadingShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Shimmer.fromColors(
-      baseColor: isDark ? Colors.grey[900]! : Colors.grey[400]!,
-      highlightColor: isDark ? Colors.grey[700]! : Colors.grey[300]!,
+      baseColor: isDark ? Colors.grey[900]! : Colors.grey[300]!,
+      highlightColor: isDark ? Colors.grey[800]! : Colors.grey[200]!,
       child: Container(
         width: width,
         height: height,
         decoration: ShapeDecoration(
-            color: isDark ? Colors.grey[700]! : Colors.grey[400],
+            color: isDark ? Colors.grey[800]! : Colors.grey[300],
             shape: shapeBorder!),
       ),
     );

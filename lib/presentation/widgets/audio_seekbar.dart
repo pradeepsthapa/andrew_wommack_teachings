@@ -24,17 +24,16 @@ class _SeekBarState extends State<SeekBar> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final value = min(_dragValue ?? widget.position.inMilliseconds.toDouble(),
         widget.duration.inMilliseconds.toDouble());
     if (_dragValue != null && !_dragging) {
       _dragValue = null;
     }
-    return Column(mainAxisSize: MainAxisSize.min,mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
       children: [
         SliderTheme(
           data: SliderThemeData(
-            activeTrackColor: Colors.greenAccent,
-            inactiveTrackColor: Colors.transparent,
             trackHeight: 1,
             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 7.0),
           ),
@@ -42,8 +41,7 @@ class _SeekBarState extends State<SeekBar> {
             min: 0.0,
             max: widget.duration.inMilliseconds.toDouble(),
             value: value,
-            activeColor: Colors.white,
-            inactiveColor: Colors.white24,
+            inactiveColor: Colors.grey[500],
             onChanged: (value) {
               if (!_dragging) {
                 _dragging = true;
@@ -63,31 +61,22 @@ class _SeekBarState extends State<SeekBar> {
             },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Text(RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$').firstMatch("$_remaining")?.group(1) ?? '$_remaining',
-                style: TextStyle(color: Colors.white70,fontSize: 12)),
-            Text(RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$').firstMatch("$_remaining")?.group(1) ?? '$_passed',
-                style: TextStyle(color: Colors.white70,fontSize: 12)),
-          ],),
+        Positioned(
+          bottom: 0,left: 24,
+          child: Text(fromDuration(_passed),
+              style: TextStyle(fontSize: 12,color:isDark?Colors.white54:Colors.grey[600])),
+        ),
+        Positioned(
+          bottom: 0,right: 24,
+          child: Text('- '+fromDuration(_remaining),
+              style: TextStyle(fontSize: 12,color:isDark?Colors.white54:Colors.grey[600])),
         ),
       ],
     );
   }
-
+  String fromDuration(Duration duration){
+    return RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$').firstMatch("$duration")?.group(1) ?? '$duration';
+  }
   Duration get _remaining => widget.duration - widget.position;
   Duration get _passed => widget.position;
-
-  // String durationToString(Duration duration) {
-  //   String twoDigits(int n) {
-  //     if (n >= 10) return "$n";
-  //     return "0$n";
-  //   }
-  //
-  //   String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(Duration.minutesPerHour));
-  //   String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(Duration.secondsPerMinute));
-  //   return "$twoDigitMinutes:$twoDigitSeconds";
-  // }
 }

@@ -13,7 +13,7 @@ class FavouritesScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: AppBar(centerTitle: true,
-          title: Text("Favourites"),elevation: 0,),
+          title: Text("Favourites",style: TextStyle(color: Colors.white),),elevation: 0,),
       ),
       body: Consumer(builder: (context, watch, child) {
         final List<TeachingModel> favourites = watch(favouriteAudioProvider).favList;

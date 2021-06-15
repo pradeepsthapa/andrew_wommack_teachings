@@ -1,7 +1,9 @@
 import 'package:andrew_wommack/logic/providers.dart';
 import 'package:andrew_wommack/presentation/screens/feed_category_screen.dart';
-import 'package:andrew_wommack/presentation/screens/mini_player.dart';
+import 'package:andrew_wommack/presentation/widgets/mini_player_widget.dart';
+import 'package:andrew_wommack/presentation/widgets/search_bar.dart';
 import 'package:audio_service/audio_service.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -24,12 +26,22 @@ class MyApp extends ConsumerWidget {
     final theme = watch(themeStateProvider);
     return MaterialApp(
       themeMode: theme.isDark?ThemeMode.dark:ThemeMode.light,
-      // themeMode: theme.platformBrightness==Brightness.dark?ThemeMode.dark:theme.toggleThemeMode(theme.isDark),
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark().copyWith(
+        appBarTheme: AppBarTheme(textTheme: GoogleFonts.varelaRoundTextTheme()),
+        textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
+            bodyText2: TextStyle(color: Colors.white,fontFamily: GoogleFonts.varelaRound().fontFamily),
+            bodyText1: TextStyle(color: Colors.white,fontFamily: GoogleFonts.varelaRound().fontFamily),
+            subtitle1:  TextStyle(color: Colors.white,fontFamily: GoogleFonts.varelaRound().fontFamily),
+            caption:TextStyle(color: Colors.white,),
+
+        ),
+      ),
       theme: ThemeData(
+        appBarTheme: AppBarTheme(textTheme: GoogleFonts.varelaRoundTextTheme()),
         fontFamily: GoogleFonts.varelaRound().fontFamily,
+        textTheme: GoogleFonts.varelaRoundTextTheme(),
         primarySwatch: theme.swatchColor,
-        scaffoldBackgroundColor: Colors.grey[200]
+        scaffoldBackgroundColor: Colors.grey[200],
       ),
       home: AudioServiceWidget(child: HomePage()),
     );
@@ -49,15 +61,24 @@ class HomePage extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColorDark,
           title: Text("Andrew Wommack Teachings",style: TextStyle(color: Colors.white),),
           actions: [
+            IconButton(onPressed: (){
+              showSearch(context: context, delegate: SearchBar());
+            }, icon: Icon(EvaIcons.search)),
             IconButton(
                 onPressed: ()=>context.read(themeStateProvider).toggleDarkMode(),
-                icon: Icon(isDark?Icons.brightness_4:Icons.brightness_2))
+                icon: Icon(isDark?Icons.brightness_4:EvaIcons.sun))
           ],
         ),
       ),
       drawer: MainDrawer(),
-      body: FeedCategory(),
-      bottomNavigationBar: MiniPlayer(),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          FeedCategory(),
+          MiniPlayerWidget()
+        ],
+      ),
+      // bottomNavigationBar: MiniPlayer(),
     );
   }
 }

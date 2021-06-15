@@ -46,7 +46,7 @@ class FeedCategory extends StatelessWidget {
                       child: CachedNetworkImage(fit: BoxFit.cover,height: 170,
                         placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
                         imageUrl: item.image??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-                        errorWidget: (context, url, error) => Image.network('https://www.podchaser.com/images/missing-image.png'),
+                        errorWidget: (context, url, error) => Image.network('https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg'),
                       ),
                   ),
                   Center(child: Padding(
