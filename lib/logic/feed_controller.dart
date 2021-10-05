@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webfeed/domain/rss_feed.dart';
-
 import 'feed_repository.dart';
 
 abstract class FeedState{

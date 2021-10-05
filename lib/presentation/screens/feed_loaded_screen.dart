@@ -2,8 +2,10 @@ import 'package:andrew_wommack/audio/audio_task.dart';
 import 'package:andrew_wommack/audio/queue_state.dart';
 import 'package:andrew_wommack/data/model.dart';
 import 'package:andrew_wommack/logic/providers.dart';
+import 'package:andrew_wommack/presentation/widgets/mini_player_widget.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:facebook_audience_network/ad/ad_native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webfeed/domain/rss_feed.dart';
@@ -15,159 +17,185 @@ class FeedLoadedScreen extends StatelessWidget {
 
   FeedLoadedScreen({@required this.rssFeed, @required this.teachingModel});
 
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return ListView(
+    return Column(
       children: [
-        Container(
-          height: 220,color: Colors.black12,width: double.infinity,
-          child: CachedNetworkImage(fit: BoxFit.cover,height: 220,width: double.infinity,
-            placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
-            imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-            errorWidget: (context, url, error) => Image.network('https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg'),
-          ),
-
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(rssFeed?.title ?? teachingModel!.tTitle!,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,color: isDark?Theme.of(context).accentColor:Colors.black),),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7),
-          child: Text(
-            rssFeed?.description ?? teachingModel!.description!, maxLines: 7,
-            overflow: TextOverflow.ellipsis,),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Expanded(
+          child: ListView(
             children: [
-              MaterialButton(
-                onPressed: () async{
-                  if(AudioService.running) {
-                    await AudioService.stop().then((value) {
-                      startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
-                    });
-                  }
-                  else {
-                    startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
-                  }
-                },
-                color: Theme
-                    .of(context)
-                    .primaryColor,
-                child: Row(mainAxisAlignment: MainAxisAlignment.start,
+              Container(
+                height: 220,color: Colors.black12,width: double.infinity,
+                child: CachedNetworkImage(fit: BoxFit.cover,height: 220,width: double.infinity,
+                  placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
+                  imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+                  errorWidget: (context, url, error) => Image.network('https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg'),
+                ),
+
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(rssFeed?.title ?? teachingModel!.tTitle!,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24,color: isDark?Theme.of(context).accentColor:Colors.black),),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 7),
+                child: Text(
+                  rssFeed?.description ?? teachingModel!.description!, maxLines: 7,
+                  overflow: TextOverflow.ellipsis,),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(Icons.play_circle_fill_rounded, color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text("PLAY ALL",
-                      style: TextStyle(color: Colors.white),),
+                    MaterialButton(
+                      onPressed: () async{
+                        if(AudioService.running) {
+                          await AudioService.stop().then((value) {
+                            startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
+                          });
+                        }
+                        else {
+                          startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
+                        }
+                      },
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
+                      child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.play_circle_fill_rounded, color: Colors.white,),
+                          SizedBox(width: 10,),
+                          Text("PLAY ALL",
+                            style: TextStyle(color: Colors.white),),
+                        ],
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      elevation: 0,
+                      minWidth: 150,
+                    ),
+                    Consumer(builder: (context, watch, child) {
+                      final state = watch(favouriteAudioProvider);
+                      return MaterialButton(
+                        onPressed: () {
+                          context.read(favouriteAudioProvider).toggleFavourite(teachingModel!.tUrl!);
+                          // print(rssFeed?.image?.url??'no link');
+                        },
+                        child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              state.readFavStatus(teachingModel!.tUrl!)?Icons.favorite:Icons.favorite_border_rounded,
+                              color: state.readFavStatus(teachingModel!.tUrl!)?Theme.of(context).primaryColor:null,
+                            ),
+                            SizedBox(width: 10,),
+                            Text("FAVOURITE",style: TextStyle(color: state.readFavStatus(teachingModel!.tUrl!)?Theme.of(context).primaryColor:null),),
+                          ],
+                        ),
+                        color: isDark ? Colors.grey[800] : Colors.white,
+                        highlightColor: Colors.redAccent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        elevation: 1,
+                        minWidth: 150,
+                      );
+                    },),
                   ],
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                elevation: 0,
-                minWidth: 150,
               ),
-              Consumer(builder: (context, watch, child) {
-                final state = watch(favouriteAudioProvider);
-                return MaterialButton(
-                  onPressed: () {
-                    context.read(favouriteAudioProvider).toggleFavourite(teachingModel!.tUrl!);
-                    // print(rssFeed?.image?.url??'no link');
-                  },
-                  child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(
-                        state.readFavStatus(teachingModel!.tUrl!)?Icons.favorite:Icons.favorite_border_rounded,
-                        color: state.readFavStatus(teachingModel!.tUrl!)?Theme.of(context).primaryColor:null,
-                      ),
-                      SizedBox(width: 10,),
-                      Text("FAVOURITE",style: TextStyle(color: state.readFavStatus(teachingModel!.tUrl!)?Theme.of(context).primaryColor:null),),
-                    ],
-                  ),
-                  color: isDark ? Colors.grey[800] : Colors.white,
-                  highlightColor: Colors.redAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  elevation: 1,
-                  minWidth: 150,
-                );
-              },),
+              ListView.separated(
+                primary: false,
+                shrinkWrap: true,
+                itemCount: rssFeed?.items?.length ?? 0,
+                itemBuilder: (context, index) {
+                  final item = rssFeed?.items?[index];
+                  return Consumer(
+                    builder: (context, watch, child) {
+                      return Card(
+                        elevation: 5,
+                        shadowColor: Colors.black26,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        child: StreamBuilder<QueueState>(
+                          stream: queueStateStream,
+                          builder: (context, snapshot) {
+                            final queueState = snapshot.data;
+                            final queue = queueState?.queue ?? [];
+                            final mediaItem = queueState?.mediaItem;
+                            return ListTile(
+                              selected: item?.enclosure?.url==mediaItem?.id? true : false,
+                              leading: SizedBox(width: 50, height: 50,
+                                child: Card(
+                                  margin: EdgeInsets.zero,
+                                  elevation: 5,
+                                  shadowColor: Colors.black45,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: CachedNetworkImage(fit: BoxFit.cover,
+                                        placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
+                                        imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+                                        errorWidget: (context, url, error) => Image.network('https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg'),
+                                      )),
+                                ),
+                              ),
+                              title: Text(item?.title ?? '', style: TextStyle(
+                                  fontWeight: item?.enclosure?.url==mediaItem?.id?FontWeight.bold:FontWeight.w500),),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(item?.description?.replaceAll(
+                                      RegExp(r"<[^>]*>"), '') ?? '', maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,),
+                                ],
+                              ),
+                              onTap: () async{
+
+                                if(queue.isNotEmpty&&queue.first.id==rssFeed?.items?[0].enclosure?.url){
+                                  AudioService.skipToQueueItem(item!.enclosure!.url!);
+                                }
+                                else {
+                                  if(AudioService.running) {
+                                    await AudioService.stop().then((value) {
+                                      startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
+                                    });
+                                  }
+                                  else {
+                                    startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
+                                  }
+                                }
+                              },
+                            );
+                          }
+                        ),
+                      );
+                    },);
+                }, separatorBuilder: (BuildContext context, int index) {
+                  if(index==rssFeed!.items!.length-2){
+                    return FacebookNativeAd(
+                      placementId: "317652293167747_323376205928689",
+                      // placementId: "IMG_16_9_APP_INSTALL#2312433698835503_2964953543583512",
+                      adType: NativeAdType.NATIVE_AD,
+                      width: double.infinity,
+                      backgroundColor: isDark?Colors.grey[800]:Theme.of(context).accentColor,
+                      titleColor: Colors.white,
+                      descriptionColor: Colors.white,
+                      buttonColor: Colors.deepPurple,
+                      buttonTitleColor: Colors.white,
+                      buttonBorderColor: Colors.white,
+                      listener: (result, value) {
+                        print("Native Banner Ad: $result --> $value");
+                      },
+                    );
+                  }
+                  return SizedBox.shrink();
+
+              },)
             ],
           ),
         ),
-        ListView.builder(
-          primary: false,
-          shrinkWrap: true,
-          itemCount: rssFeed?.items?.length ?? 0,
-          itemBuilder: (context, index) {
-            final item = rssFeed?.items?[index];
-            return Consumer(
-              builder: (context, watch, child) {
-                return Card(
-                  elevation: 5,
-                  shadowColor: Colors.black26,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  child: StreamBuilder<QueueState>(
-                    stream: queueStateStream,
-                    builder: (context, snapshot) {
-                      final queueState = snapshot.data;
-                      final queue = queueState?.queue ?? [];
-                      final mediaItem = queueState?.mediaItem;
-                      return ListTile(
-                        selected: item?.enclosure?.url==mediaItem?.id? true : false,
-                        leading: SizedBox(width: 50, height: 50,
-                          child: Card(
-                            margin: EdgeInsets.zero,
-                            elevation: 5,
-                            shadowColor: Colors.black45,
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
-                                child: CachedNetworkImage(fit: BoxFit.cover,
-                                  placeholder: (context, url) => Image.asset('assets/images/andrew_wommack.png'),
-                                  imageUrl: rssFeed?.image?.url??'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-                                  errorWidget: (context, url, error) => Image.network('https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg'),
-                                )),
-                          ),
-                        ),
-                        title: Text(item?.title ?? '', style: TextStyle(
-                            fontWeight: item?.enclosure?.url==mediaItem?.id?FontWeight.bold:FontWeight.w500),),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(item?.description?.replaceAll(
-                                RegExp(r"<[^>]*>"), '') ?? '', maxLines: 3,
-                              overflow: TextOverflow.ellipsis,),
-                          ],
-                        ),
-                        onTap: () async{
-
-                          if(queue.isNotEmpty&&queue.first.id==rssFeed?.items?[0].enclosure?.url){
-                            AudioService.skipToQueueItem(item!.enclosure!.url!);
-                          }
-                          else {
-                            if(AudioService.running) {
-                              await AudioService.stop().then((value) {
-                                startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
-                              });
-                            }
-                            else {
-                              startAudioPlayer(feed: rssFeed,teachingModel: teachingModel);
-                            }
-                          }
-                        },
-                      );
-                    }
-                  ),
-                );
-              },);
-          },)
+        MiniPlayerWidget()
       ],
     );
   }

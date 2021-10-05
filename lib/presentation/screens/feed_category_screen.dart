@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+
 class FeedCategory extends StatelessWidget {
 
   final List<TeachingModel> allCategory = TeachingCategory.allList;
@@ -24,7 +25,6 @@ class FeedCategory extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             splashFactory: InkRipple.splashFactory,
             onTap: (){
-              // Navigator.push(context, MaterialPageRoute(builder: (_)=>FeedDetails(item)));
               Navigator.push(context, PageRouteBuilder(
                   transitionDuration: Duration(milliseconds: 700),
                   transitionsBuilder: (context,a1,a2,child){

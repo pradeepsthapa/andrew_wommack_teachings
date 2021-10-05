@@ -3,6 +3,7 @@ import 'package:andrew_wommack/logic/audio_favourites.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'feed_controller.dart';
 import 'feed_repository.dart';
+import 'interstitial_adservice.dart';
 import 'theme_state.dart';
 
 final feedRepositoryProvider = Provider<FeedRepository>((ref)=>FeedRepository());
@@ -16,3 +17,6 @@ final themeStateProvider = ChangeNotifierProvider<MainTheme>((ref)=>MainTheme())
 final favouriteAudioProvider = ChangeNotifierProvider<AudioFavourites>((ref)=>AudioFavourites());
 
 final audioDownloaderProvider = ChangeNotifierProvider<AudioDownloader>((ref)=>AudioDownloader());
+
+final adStateProvider = Provider<AdService>((ref)=>AdService());
+
