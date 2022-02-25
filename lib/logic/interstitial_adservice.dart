@@ -15,7 +15,9 @@ class AdService{
     if(adLoaded) {
       FacebookInterstitialAd.showInterstitialAd();
     }
-    else SystemNavigator.pop();
+    else {
+      SystemNavigator.pop();
+    }
   }
 
 
@@ -23,12 +25,12 @@ class AdService{
     if (adLoaded) {
       FacebookInterstitialAd.showInterstitialAd();
     }
-    else if(adCount<=3) {
-      print("the current  display count is $adCount");
-      loadInterstitial();
+    else {
+      if(adCount<=3) {
+        loadInterstitial();
+      }
     }
   }
-
 
   void loadInterstitial(){
     FacebookInterstitialAd.loadInterstitialAd(
@@ -43,7 +45,6 @@ class AdService{
               _adLoaded = false;
               break;
             case InterstitialAdResult.ERROR:
-              print("error$args");
               break;
             case InterstitialAdResult.LOADED:
               _adLoaded = true;

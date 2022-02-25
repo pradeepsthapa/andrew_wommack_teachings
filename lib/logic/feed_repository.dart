@@ -23,6 +23,7 @@ class FeedRepository extends BaseFeedRepository{
     }on Exception catch(e){
       throw Failure(message: "Something went wrong \n$e");
     }
+    return null;
   }
 }
 

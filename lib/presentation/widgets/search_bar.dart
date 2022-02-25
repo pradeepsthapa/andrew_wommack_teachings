@@ -1,5 +1,5 @@
-import 'package:andrew_wommack/data/model.dart';
-import 'package:andrew_wommack/data/model_data.dart';
+import 'package:andrew_wommack/data/teaching_model.dart';
+import 'package:andrew_wommack/data/teaching_data.dart';
 import 'package:andrew_wommack/presentation/screens/feed_details.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +11,10 @@ class SearchBar extends SearchDelegate<String>{
 
   @override
   List<Widget> buildActions(BuildContext context) {
-    return [IconButton(icon: Icon(Icons.close), onPressed: () {
+    return [IconButton(icon: const Icon(Icons.close), onPressed: () {
       query = '';
     },)];
   }
-
 
   @override
   Widget buildLeading(BuildContext context) {
@@ -39,71 +38,78 @@ class SearchBar extends SearchDelegate<String>{
                 text: TextSpan(
                     text: '',
                     style: TextStyle(color: isDark?Colors.white:Colors.black),
-                    children: highlightOccurrences(item.tTitle!, query,isDark)
+                    children: highlightOccurrences(item.tTitle, query,isDark)
                 ),
               ),
               onTap: (){
                 close(context, '');
-                Navigator.push(context, PageRouteBuilder(
-                    transitionDuration: Duration(milliseconds: 700),
-                    transitionsBuilder: (context,a1,a2,child){
-                      return FadeTransition(
-                        opacity: a1,
-                        child: child,
-                      );
-                    },
-                    pageBuilder: (context,  a1, a2) {
-                      return FeedDetails(item);
-                    }));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>FeedDetails(item)));
+                // Navigator.push(context, PageRouteBuilder(
+                //     transitionDuration: const Duration(milliseconds: 700),
+                //     transitionsBuilder: (context,a1,a2,child){
+                //       return FadeTransition(
+                //         opacity: a1,
+                //         child: child,
+                //       );
+                //     },
+                //     pageBuilder: (context,  a1, a2) {
+                //       return FeedDetails(item);
+                //     }));
               },
 
             );
           });
     }
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Text("No Results"),
     );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    _filteredList = allList.where((element) => element.tTitle!.toLowerCase().contains(query.toLowerCase())).toList();
+    _filteredList = allList.where((element) => element.tTitle.toLowerCase().contains(query.toLowerCase())).toList();
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    if(_filteredList.isEmpty) return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text("No results"),
-    );
-    return ListView.builder(
+    if(_filteredList.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text("No results"),
+      );
+    }
+    return ListView.separated(
       itemCount: _filteredList.length>15?15:_filteredList.length,
         itemBuilder: (context,index){
         final item = _filteredList[index];
       return ListTile(
         dense: true,
+        trailing: const Icon(Icons.chevron_right),
         title: RichText(
           text: TextSpan(
               text: '',
               style: TextStyle(color: isDark?Colors.white:Colors.black),
-              children: highlightOccurrences(item.tTitle!, query,isDark)
+              children: highlightOccurrences(item.tTitle, query,isDark)
               ),
         ),
         onTap: (){
           close(context, '');
-          Navigator.push(context, PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 700),
-              transitionsBuilder: (context,a1,a2,child){
-                return FadeTransition(
-                  opacity: a1,
-                  child: child,
-                );
-              },
-              pageBuilder: (context,  a1, a2) {
-                return FeedDetails(item);
-              }));
+          Navigator.push(context, MaterialPageRoute(builder: (_)=>FeedDetails(item)));
+          // Navigator.push(context, PageRouteBuilder(
+          //     transitionDuration: const Duration(milliseconds: 700),
+          //     transitionsBuilder: (context,a1,a2,child){
+          //       return FadeTransition(
+          //         opacity: a1,
+          //         child: child,
+          //       );
+          //     },
+          //     pageBuilder: (context,  a1, a2) {
+          //       return FeedDetails(item);
+          //     }));
         },
 
       );
-    });
+    }, separatorBuilder: (BuildContext context, int index) {
+        return const Divider(thickness: 0.5,height: 0);
+    },);
   }
 
 

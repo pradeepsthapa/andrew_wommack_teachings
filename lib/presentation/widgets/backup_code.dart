@@ -1,5 +1,5 @@
-// import 'package:andrew_wommack/data/model.dart';
-// import 'package:andrew_wommack/data/model_data.dart';
+// import 'package:andrew_wommack/data/teaching_model.dart';
+// import 'package:andrew_wommack/data/teaching_data.dart';
 // import 'package:andrew_wommack/presentation/screens/feed_details.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:facebook_audience_network/ad/ad_native.dart';
@@ -73,7 +73,7 @@
 //                   ),
 //                   Center(child: Padding(
 //                     padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 3),
-//                     child: Text(item.tTitle??'',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Theme.of(context).accentColor),maxLines: 2,overflow: TextOverflow.ellipsis,textAlign: TextAlign.center,),
+//                     child: Text(item.tTitle??'',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Theme.of(context).colorScheme.secondary),maxLines: 2,overflow: TextOverflow.ellipsis,textAlign: TextAlign.center,),
 //                   )),
 //                   Padding(
 //                     padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),

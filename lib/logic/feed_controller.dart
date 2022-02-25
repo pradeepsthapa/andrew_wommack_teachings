@@ -43,11 +43,11 @@ class FeedError extends FeedState{
 
 class FeedController extends StateNotifier<FeedState>{
   FeedRepository feedRepository;
-  FeedController(this.feedRepository) : super(FeedInitial());
+  FeedController(this.feedRepository) : super(const FeedInitial());
 
   Future<void> fetchFeed(String feedUrl)async{
     try{
-      state = FeedLoading();
+      state = const FeedLoading();
       final feed = await feedRepository.getFeed(feedUrl: feedUrl);
       if(feed!=null) {
         state = FeedLoaded(feed);

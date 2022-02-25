@@ -1,14 +1,15 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:rxdart/rxdart.dart';
 
 class MediaState {
-  final MediaItem? mediaItem;
+  final MediaItem mediaItem;
   final Duration position;
-
   MediaState(this.mediaItem, this.position);
 }
 
-Stream<MediaState> get mediaStateStream => Rx.combineLatest2<MediaItem?, Duration, MediaState>(
-        AudioService.currentMediaItemStream,
-        AudioService.positionStream,
-            (mediaItem, position) => MediaState(mediaItem, position));
+class PositionData {
+  final Duration position;
+  final Duration bufferedPosition;
+  final Duration duration;
+
+  PositionData(this.position, this.bufferedPosition, this.duration);
+}

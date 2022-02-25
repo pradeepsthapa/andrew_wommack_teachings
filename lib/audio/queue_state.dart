@@ -2,14 +2,18 @@ import 'package:audio_service/audio_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class QueueState {
-  final List<MediaItem>? queue;
-  final MediaItem? mediaItem;
+  static QueueState empty = const QueueState([], 0, [], AudioServiceRepeatMode.none);
 
-  QueueState(this.queue, this.mediaItem);
+  final List<MediaItem> queue;
+  final int? queueIndex;
+  final List<int>? shuffleIndices;
+  final AudioServiceRepeatMode repeatMode;
+
+  const QueueState(this.queue, this.queueIndex, this.shuffleIndices, this.repeatMode);
+
+  bool get hasPrevious => repeatMode != AudioServiceRepeatMode.none || (queueIndex ?? 0) > 0;
+
+  bool get hasNext => repeatMode != AudioServiceRepeatMode.none || (queueIndex ?? 0) + 1 < queue.length;
+
+  List<int> get indices => shuffleIndices ?? List.generate(queue.length, (i) => i);
 }
-
-Stream<QueueState> get queueStateStream =>
-    Rx.combineLatest2<List<MediaItem>?, MediaItem?, QueueState>(
-        AudioService.queueStream,
-        AudioService.currentMediaItemStream,
-            (queue, mediaItem) => QueueState(queue, mediaItem));

@@ -1,7 +1,7 @@
-import 'package:andrew_wommack/data/model.dart';
+import 'package:andrew_wommack/data/teaching_model.dart';
 
 class TeachingCategory {
-  static List<TeachingModel> allList = [
+  static List<TeachingModel> allList = const [
     TeachingModel(
         id: 1,
         tTitle: 'Anger Management',
@@ -93,15 +93,6 @@ Imagine what it would have been like to be one of Jesus’ disciples at the end.
       ''',
     ),
     TeachingModel(
-      id: 11,
-      tTitle: 'Effects Of Praise',
-      tUrl: 'http://feeds.feedburner.com/awm_1004',
-      image: 'http://s3.awmi.net/podcasts/images/teaching/awm_1018.jpg',
-      description: '''
-      Praise causes our faith to abound by keeping our minds stayed on the answer instead of the problem. Praise causes Satan to flee because he can't stand true worship of God. Praise actually ministers unto God. This series will explain how praise affects the devil, God, and us. Praise is God's antidote to fear and the pessimism of the world.
-      ''',
-    ),
-    TeachingModel(
       id: 12,
       tTitle: 'Effortless Change',
       tUrl: 'http://feeds.feedburner.com/awm_1018',
@@ -128,15 +119,15 @@ Imagine what it would have been like to be one of Jesus’ disciples at the end.
       Faith is based on knowledge (2 Pet 1:3); therefore, a proper understanding of what God's Word says on faith is essential to developing a life of faith. These teachings will provide a basic perception of what faith is and how it works.
       ''',
     ),
-    TeachingModel(
-      id: 15,
-      tTitle: 'Effects Of Praise',
-      tUrl: 'http://feeds.feedburner.com/awm_1004',
-      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-      description: '''
-      Praise causes our faith to abound by keeping our minds stayed on the answer instead of the problem. Praise causes Satan to flee because he can't stand true worship of God. Praise actually ministers unto God. This series will explain how praise affects the devil, God, and us. Praise is God's antidote to fear and the pessimism of the world.
-      ''',
-    ),
+    // TeachingModel(
+    //   id: 15,
+    //   tTitle: 'Effects Of Praise',
+    //   tUrl: 'http://feeds.feedburner.com/awm_1004',
+    //   image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+    //   description: '''
+    //   Praise causes our faith to abound by keeping our minds stayed on the answer instead of the problem. Praise causes Satan to flee because he can't stand true worship of God. Praise actually ministers unto God. This series will explain how praise affects the devil, God, and us. Praise is God's antidote to fear and the pessimism of the world.
+    //   ''',
+    // ),
     TeachingModel(
       id: 16,
       tTitle: 'Family Series',
@@ -251,15 +242,15 @@ These interviews will arm you to counteract the increasing secularization of soc
       Every Christian needs to find God’s will for their life. And once they’ve found it, they need to know how to get there. There is a right and wrong way. Andrew shares from the Word on how to find God’s will for your life. He illustrates it with personal examples from his own life. These teachings provide essential insight to stay in God’s will and to fulfill God’s will God’s way.
       ''',
     ),
-    TeachingModel(
-      id: 28,
-      tTitle: 'Effects Of Praise',
-      tUrl: 'http://feeds.feedburner.com/awm_1004',
-      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-      description: '''
-      Praise causes our faith to abound by keeping our minds stayed on the answer instead of the problem. Praise causes Satan to flee because he can't stand true worship of God. Praise actually ministers unto God. This series will explain how praise affects the devil, God, and us. Praise is God's antidote to fear and the pessimism of the world.
-      ''',
-    ),
+    // TeachingModel(
+    //   id: 28,
+    //   tTitle: 'Effects Of Praise',
+    //   tUrl: 'http://feeds.feedburner.com/awm_1004',
+    //   image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+    //   description: '''
+    //   Praise causes our faith to abound by keeping our minds stayed on the answer instead of the problem. Praise causes Satan to flee because he can't stand true worship of God. Praise actually ministers unto God. This series will explain how praise affects the devil, God, and us. Praise is God's antidote to fear and the pessimism of the world.
+    //   ''',
+    // ),
     TeachingModel(
       id: 29,
       tTitle: 'Hardness Of Heart',
@@ -406,15 +397,15 @@ It wasn’t just fate or luck that Peter walked on the water while the other apo
       Have you settled for less than God's best? If you have, you'll never receive it always looking for a miracle. It's time you learned how to walk in the blessing of God.
       ''',
     ),
-    TeachingModel(
-      id: 45,
-      tTitle: 'Effects Of Praise',
-      tUrl: 'http://feeds.feedburner.com/awm_1004',
-      image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
-      description: '''
-      Praise causes our faith to abound by keeping our minds stayed on the answer instead of the problem. Praise causes Satan to flee because he can't stand true worship of God. Praise actually ministers unto God. This series will explain how praise affects the devil, God, and us. Praise is God's antidote to fear and the pessimism of the world.
-      ''',
-    ),
+    // TeachingModel(
+    //   id: 45,
+    //   tTitle: 'Effects Of Praise',
+    //   tUrl: 'http://feeds.feedburner.com/awm_1004',
+    //   image: 'https://believersportal.com/wp-content/uploads/2016/09/andrew-wommack.jpg',
+    //   description: '''
+    //   Praise causes our faith to abound by keeping our minds stayed on the answer instead of the problem. Praise causes Satan to flee because he can't stand true worship of God. Praise actually ministers unto God. This series will explain how praise affects the devil, God, and us. Praise is God's antidote to fear and the pessimism of the world.
+    //   ''',
+    // ),
     TeachingModel(
       id: 46,
       tTitle: 'In God We Trust',

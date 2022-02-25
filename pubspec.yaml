@@ -4,7 +4,7 @@ description: Andrew Wommack Teachings
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 
-version: 1.0.5+5
+version: 1.0.7+7
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -14,39 +14,45 @@ dependencies:
     sdk: flutter
 
   webfeed: ^0.7.0
-  http: ^0.13.3
-  flutter_riverpod: ^0.14.0+3
+  http: ^0.13.4
+  flutter_riverpod: ^1.0.3
   equatable: ^2.0.3
-  audio_service: ^0.17.1
-  just_audio: ^0.7.5
-  audio_session: ^0.1.5
-  rxdart: ^0.27.1
-  get_storage: ^2.0.2
-  google_fonts: ^2.1.0
+  audio_service: ^0.18.3
+  just_audio: ^0.9.20
+  audio_session: ^0.1.6+1
+  rxdart: ^0.27.3
+  get_storage: ^2.0.3
+  google_fonts: ^2.3.1
   shimmer: ^2.0.0
-  flutter_staggered_grid_view: ^0.4.0
+  flutter_staggered_grid_view: ^0.6.1
   share: ^2.0.4
-  url_launcher: ^6.0.3
-  flutter_downloader: ^1.6.1
-  permission_handler: ^8.1.1
-  cached_network_image: ^3.0.0
-  miniplayer: ^1.0.0+2
-  eva_icons_flutter: ^3.0.0
-  facebook_audience_network: ^1.0.0-nullsafety.0
+  url_launcher: ^6.0.20
+  path_provider: ^2.0.9
+  youtube_explode_dart: ^1.10.9+1
+#  flutter_downloader: ^1.7.2
+#  permission_handler: ^9.2.0
+  cached_network_image: ^3.2.0
+  miniplayer: ^1.0.1
+  eva_icons_flutter: ^3.1.0
+  get_it: ^7.2.0
+  animations: ^2.0.2
+  facebook_audience_network: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 #  flutter_launcher_icons: ^0.9.0
-  flutter_native_splash: ^1.2.0
+  flutter_native_splash: ^2.0.5
+  flutter_lints: ^1.0.4
 #flutter_icons:
 #  android: "launcher_icon"
 #  ios: false
 #  image_path: "assets/icon.jpg"
 
 flutter_native_splash:
-  image: assets/splash.png
-  color: "#36468c"
+  image: "assets/images/splash.png"
+  color: "#ffffff"
+  color_dark: "#04091f"
 
 flutter:
 
@@ -54,3 +60,7 @@ flutter:
 
   assets:
     - assets/images/
+
+
+    #  flutter pub run flutter_launcher_icons:main
+#    flutter pub run flutter_native_splash:create

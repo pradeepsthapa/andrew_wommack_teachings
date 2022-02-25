@@ -1,29 +1,27 @@
-import 'package:andrew_wommack/data/model.dart';
+import 'package:andrew_wommack/data/teaching_model.dart';
 import 'package:andrew_wommack/logic/feed_controller.dart';
 import 'package:andrew_wommack/logic/providers.dart';
 import 'package:andrew_wommack/presentation/widgets/banner_widget.dart';
 import 'package:andrew_wommack/presentation/widgets/loading_shimmer.dart';
-import 'package:andrew_wommack/presentation/widgets/mini_player_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'feed_loaded_screen.dart';
 
-class FeedDetails extends StatefulWidget {
+class FeedDetails extends ConsumerStatefulWidget {
   final TeachingModel model;
-  FeedDetails(this.model);
+  const FeedDetails(this.model, {Key? key}) : super(key: key);
 
   @override
-  _FeedDetailsState createState() => _FeedDetailsState();
+  ConsumerState createState() => _FeedDetailsState();
 }
 
-class _FeedDetailsState extends State<FeedDetails> {
+class _FeedDetailsState extends ConsumerState<FeedDetails> {
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      context.read(feedControllerProvider.notifier).fetchFeed(widget.model.tUrl!);
+      ref.read(feedControllerProvider.notifier).fetchFeed(widget.model.tUrl);
     });
   }
 
@@ -31,35 +29,34 @@ class _FeedDetailsState extends State<FeedDetails> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async{
-        context.read(adStateProvider).showMainAds();
+        ref.read(adStateProvider).showMainAds();
         return true;
       },
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
+          preferredSize: const Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Theme.of(context).primaryColorDark,
             elevation: 0,
-            title: Text(widget.model.tTitle??'',style: TextStyle(color: Colors.white),),
+            title: Text(widget.model.tTitle,style: const TextStyle(color: Colors.white),),
           ),
         ),
         body: Consumer(
-          builder: (context, watch, child) {
-            final state = watch(feedControllerProvider);
+          builder: (context, ref, child) {
+            final state = ref.watch(feedControllerProvider);
             if (state is FeedInitial) {
-              return Text("Loading...");
+              return const Text("Loading...");
             } else if (state is FeedLoading) {
               return ShimmerList();
             } else if (state is FeedLoaded) {
               return FeedLoadedScreen(rssFeed: state.feed, teachingModel: widget.model,);
             } else if (state is FeedError) {
-              return Center(child: Text(state.message,style: TextStyle(fontWeight: FontWeight.bold),));
+              return Center(child: Text(state.message,style: const TextStyle(fontWeight: FontWeight.bold),));
             }
-            return Center(child: Text('Unable to fetch data...',style: TextStyle(fontWeight: FontWeight.bold),));
+            return const Center(child: Text('Unable to fetch data...',style: TextStyle(fontWeight: FontWeight.bold),));
           },
         ),
-        bottomNavigationBar: BannerAdWidget(),
-        // bottomNavigationBar: MiniPlayerWidget(),
+        bottomNavigationBar: const BannerAdWidget(),
       ),
     );
   }
