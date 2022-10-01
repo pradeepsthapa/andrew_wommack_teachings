@@ -46,7 +46,7 @@ class FeedCategory extends StatelessWidget {
                   )),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                    child: Text(item.description,style: const TextStyle(fontSize: 12,),maxLines: 7,overflow: TextOverflow.ellipsis,),
+                    child: Text(item.description,style: const TextStyle(fontSize: 12,),),
                   ),
                 ],),
             ),

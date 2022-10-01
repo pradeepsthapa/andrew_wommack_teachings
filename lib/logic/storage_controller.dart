@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 
 class StorageProvider extends ChangeNotifier{
-  final Reader _reader;
+  final ChangeNotifierProviderRef _reader;
   StorageProvider(this._reader);
 
   final _box = GetIt.I.get<GetStorage>();
@@ -23,17 +23,17 @@ class StorageProvider extends ChangeNotifier{
 
   void saveFontSize(double size){
     _box.write(Constants.fontSize, size);
-    _reader(fontSizeProvider.state).state = size;
+    _reader.read(fontSizeProvider.state).state = size;
   }
 
   void saveBackground(int color){
     _box.write(Constants.backgroundColor, color);
-    _reader(appColorProvider.state).state = color;
+    _reader.read(appColorProvider.state).state = color;
   }
 
   void saveFontStyle(int index){
     _box.write(Constants.fontIndex, index);
-    _reader(globalFontProvider.state).state = index;
+    _reader.read(globalFontProvider.state).state = index;
   }
 
 
@@ -54,8 +54,8 @@ class StorageProvider extends ChangeNotifier{
 
 
   void loadInitials() {
-    _reader(fontSizeProvider.state).state =  _box.read(Constants.fontSize);
-    _reader(appColorProvider.state).state =  _box.read(Constants.backgroundColor);
-    _reader(globalFontProvider.state).state =  _box.read(Constants.fontIndex);
+    _reader.read(fontSizeProvider.state).state =  _box.read(Constants.fontSize);
+    _reader.read(appColorProvider.state).state =  _box.read(Constants.backgroundColor);
+    _reader.read(globalFontProvider.state).state =  _box.read(Constants.fontIndex);
   }
 }

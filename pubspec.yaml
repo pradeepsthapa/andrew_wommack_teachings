@@ -4,7 +4,7 @@ description: Andrew Wommack Teachings
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 
-version: 2.0.0+8
+version: 2.0.1+9
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -15,25 +15,26 @@ dependencies:
 
   webfeed: ^0.7.0
   http: ^0.13.5
-  flutter_riverpod: ^1.0.4
+  flutter_riverpod: ^2.0.0
   equatable: ^2.0.5
   audio_service: ^0.18.7
-  just_audio: ^0.9.28
+  just_audio: ^0.9.29
   audio_session: ^0.1.10
   rxdart: ^0.27.5
   get_storage: ^2.0.3
   google_fonts: ^3.0.1
   shimmer: ^2.0.0
-  flutter_staggered_grid_view: ^0.6.1
+  flutter_staggered_grid_view: ^0.6.2
   share: ^2.0.4
-  url_launcher: ^6.1.5
+  url_launcher: ^6.1.6
   path_provider: ^2.0.11
   youtube_explode_dart: ^1.10.9+1
   cached_network_image: ^3.2.2
   miniplayer: ^1.0.1
   eva_icons_flutter: ^3.1.0
   get_it: ^7.2.0
-  animations: ^2.0.4
+  animations: ^2.0.5
+  google_mobile_ads: ^2.0.1
   facebook_audience_network: ^1.0.1
 
 dev_dependencies:

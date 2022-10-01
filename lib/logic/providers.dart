@@ -16,7 +16,7 @@ final feedRepositoryProvider = Provider<FeedRepository>((ref)=>FeedRepository())
 
 final feedControllerProvider = StateNotifierProvider<FeedController,FeedState>((ref)=> FeedController(ref.watch(feedRepositoryProvider),));
 
-final boxStorageProvider = ChangeNotifierProvider<StorageProvider>((ref)=>StorageProvider(ref.read)..initStorage());
+final boxStorageProvider = ChangeNotifierProvider<StorageProvider>((ref)=>StorageProvider(ref)..initStorage());
 
 final ytPlaylistProvider = FutureProvider<List<Video>>((ref)=>YTServices.geGospelTruthPlaylist());
 

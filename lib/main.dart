@@ -10,8 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'audio/audio_task.dart';
 import 'data/constants.dart';
+import 'logic/open_ad_manager.dart';
 import 'presentation/screens/drawer.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'presentation/widgets/banner_widget.dart';
@@ -19,6 +21,8 @@ import 'presentation/widgets/banner_widget.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await MobileAds.instance.initialize();
+  await AppOpenAdManager().loadShowAd();
   FacebookAudienceNetwork.init();
   await setupLocator();
   runApp(const ProviderScope(child: MyApp()));
@@ -34,7 +38,6 @@ Future<void> setupLocator()async{
       androidNotificationChannelId: 'com.ccbc.andrew_wommack',
       androidNotificationChannelName: 'Andrew Wommack Teachings',
       androidNotificationOngoing: true,
-      androidShowNotificationBadge: true,
     ),
   );
   GetIt.I.registerSingleton<AudioPlayerHandler>(audioHandler);

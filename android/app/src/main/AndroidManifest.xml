@@ -41,5 +41,10 @@
                <action android:name="android.intent.action.MEDIA_BUTTON" />
            </intent-filter>
        </receiver>
+       <meta-data
+           android:name="com.google.android.gms.ads.APPLICATION_ID"
+           android:value="ca-app-pub-2693320098955235~2571086467"/>
     </application>
 </manifest>
+<!--    ca-app-pub-2693320098955235~2571086467-->
+<!--    ca-app-pub-3940256099942544~3347511713-->

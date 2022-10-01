@@ -8,8 +8,8 @@ class BannerAdWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: FacebookBannerAd(
-        // placementId: "317652293167747_317652629834380",
-        placementId: "IMG_16_9_APP_INSTALL#2312433698835503_2964944860251047",
+        placementId: "317652293167747_317652629834380",
+        // placementId: "IMG_16_9_APP_INSTALL#2312433698835503_2964944860251047",
         bannerSize: BannerSize.STANDARD,
         listener: (result, value) {
         },
